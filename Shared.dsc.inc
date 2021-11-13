@@ -143,6 +143,14 @@
   #gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdShellFile|{ 0x83, 0xA5, 0x04, 0x7C, 0x3E, 0x9E, 0x1C, 0x4F, 0xAD, 0x65, 0xE0, 0x52, 0x68, 0xD0, 0xB4, 0xD1 }
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|0
 
+  # RPM
+  gQcomTokenSpaceGuid.PcdApcsAlias0IpcInterrupt|0xF9011000
+  gQcomTokenSpaceGuid.PcdSmdIrq|200
+
+  # SMEM
+  gQcomTokenSpaceGuid.PcdMsmSharedBase|0x0FA00000
+  gQcomTokenSpaceGuid.PcdMsmSharedSize|0x00200000
+
 [LibraryClasses]
   RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
@@ -246,6 +254,7 @@
   LcmLib|Lumia930Pkg/Library/LcmLib/LcmLib.inf
   MicroLibC|Lumia930Pkg/Library/MicroLibC/MicroLibC.inf
   StrLib|Lumia930Pkg/Library/StrLib/StrLib.inf
+  SmemLib|Lumia930Pkg/Driver/SmemDxe/SmemImplLib.inf
   
   # System Reset
   EfiResetSystemLib|ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf
@@ -256,6 +265,8 @@
   PrePiMemoryAllocationLib|EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+  RpmLib|Lumia930Pkg/Driver/SmdRpmDxe/RpmLib.inf
+  SmemLib|Lumia930Pkg/Driver/SmemDxe/SmemImplLib.inf
   
   # SoC Drivers
   GpioTlmmLib|Lumia930Pkg/GPLDriver/GpioTlmmDxe/GpioTlmmImplLib.inf
@@ -287,6 +298,8 @@
   SpmiLib|Lumia930Pkg/Driver/SpmiDxe/SpmiLib.inf
   Pm8x41Lib|Lumia930Pkg/Driver/Pm8x41Dxe/Pm8x41Lib.inf
   ClockLib|Lumia930Pkg/Driver/ClockDxe/ClockImplLib.inf
+  RpmLib|Lumia930Pkg/Driver/SmdRpmDxe/RpmLib.inf
+  SmemLib|Lumia930Pkg/Driver/SmemDxe/SmemImplLib.inf
 
 
 [LibraryClasses.common.UEFI_APPLICATION]
@@ -298,12 +311,14 @@
   FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
+  RpmLib|Lumia930Pkg/Driver/SmdRpmDxe/RpmLib.inf
 
   # SoC Drivers
   GpioTlmmLib|Lumia930Pkg/GPLDriver/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Lumia930Pkg/Driver/SpmiDxe/SpmiLib.inf
   Pm8x41Lib|Lumia930Pkg/Driver/Pm8x41Dxe/Pm8x41Lib.inf
   ClockLib|Lumia930Pkg/Driver/ClockDxe/ClockImplLib.inf
+  SmemLib|Lumia930Pkg/Driver/SmemDxe/SmemImplLib.inf
 
 [LibraryClasses.common.UEFI_DRIVER]
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
@@ -313,12 +328,14 @@
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
   UefiScsiLib|MdePkg/Library/UefiScsiLib/UefiScsiLib.inf
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
+  RpmLib|Lumia930Pkg/Driver/SmdRpmDxe/RpmLib.inf
 
   # SoC Drivers
   GpioTlmmLib|Lumia930Pkg/GPLDriver/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Lumia930Pkg/Driver/SpmiDxe/SpmiLib.inf
   Pm8x41Lib|Lumia930Pkg/Driver/Pm8x41Dxe/Pm8x41Lib.inf
   ClockLib|Lumia930Pkg/Driver/ClockDxe/ClockImplLib.inf
+  SmemLib|Lumia930Pkg/Driver/SmemDxe/SmemImplLib.inf
 
 [LibraryClasses.common.DXE_RUNTIME_DRIVER]
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
@@ -358,7 +375,7 @@
 	RealTimeClockLib|OvmfPkg/Library/XenRealTimeClockLib/XenRealTimeClockLib.inf
   }
 
-  # SoC Drivers (Cross-referenced from EFIDroid and Ben)
+  # SoC Drivers (Cross-referenced from EFIDroid, Ben and Gus)
   Lumia930Pkg/Driver/BamDxe/BamDxe.inf
   Lumia930Pkg/GPLDriver/GpioTlmmDxe/GpioTlmmDxe.inf
   Lumia930Pkg/GPLDriver/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
@@ -368,6 +385,8 @@
   Lumia930Pkg/Driver/KeypadDxe/KeypadDxe.inf
   Lumia930Pkg/Driver/ClockDxe/ClockDxe.inf
   Lumia930Pkg/Driver/SdhciMMCHSDxe/SdhciMMCHS.inf
+  Lumia930Pkg/Driver/SmemDxe/SmemDxe.inf
+  Lumia930Pkg/Driver/SmdRpmDxe/RpmDxe.inf
 
 
 
